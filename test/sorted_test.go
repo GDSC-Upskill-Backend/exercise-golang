@@ -32,17 +32,19 @@ func TestSorted(t *testing.T) {
 
 	for _, testCase := range testCases {
 		// Sort the data
-		fmt.Println("=====================================")
-		fmt.Println("Data: ", testCase.Data)
-		fmt.Println()
-		fmt.Println("Expected Sort: ", testCase.ExpectedResult)
+		t.Run("Test Sort", func(t *testing.T) {
+			fmt.Println("=====================================")
+			fmt.Println("Data: ", testCase.Data)
+			fmt.Println()
+			fmt.Println("Expected Sort: ", testCase.ExpectedResult)
 
-		// Compare the result
-		result := utils.Sorted(testCase.Data)
-		fmt.Println("Sorted: ", result)
-		assert.Equal(t, testCase.ExpectedResult, result, "The sorted data is not correct")
+			// Compare the result
+			result := utils.Sorted(testCase.Data)
+			fmt.Println("Sorted: ", result)
+			assert.Equal(t, testCase.ExpectedResult, result, "The sorted data is not correct")
 
-		fmt.Println()
-		fmt.Println("=====================================")
+			fmt.Println()
+			fmt.Println("=====================================")
+		})
 	}
 }

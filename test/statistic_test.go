@@ -54,26 +54,31 @@ func TestStatistic(t *testing.T) {
 
 	for _, testCase := range testCases {
 		// Sort the data
-		fmt.Println("=====================================")
-		fmt.Println("Data: ", testCase.Data)
-		fmt.Println()
-		fmt.Println("Expected Sort: ", testCase.ExpectedSort)
-		sortedData := utils.Sorted(testCase.Data)
-		fmt.Println("Sorted: ", sortedData)
-		assert.Equal(t, testCase.ExpectedSort, sortedData, "Sorted is not correct")
+		t.Run("Test Sort", func(t *testing.T) {
+			fmt.Println("=====================================")
+			fmt.Println("Data: ", testCase.Data)
+			fmt.Println()
+			fmt.Println("Expected Sort: ", testCase.ExpectedSort)
+			sortedData := utils.Sorted(testCase.Data)
+			fmt.Println("Sorted: ", sortedData)
+			fmt.Println("=====================================")
+			assert.Equal(t, testCase.ExpectedSort, sortedData, "Sorted is not correct")
 
-		fmt.Println()
+			fmt.Println()
 
-		// Get the statistics result
-		result := utils.Statistics(sortedData)
-		fmt.Println("Result: ", result)
-		fmt.Println("Expected Result: ", testCase.ExpectedResult)
-		fmt.Println("=====================================")
-		fmt.Println()
+			t.Run("Test Statistics", func(t *testing.T) {
+				// Get the statistics result
+				result := utils.Statistics(sortedData)
+				fmt.Println("=====================================")
+				fmt.Println("Result: ", result)
+				fmt.Println("Expected Result: ", testCase.ExpectedResult)
+				fmt.Println("=====================================")
+				fmt.Println()
 
-		// Compare the result with expected result
-		assert.Equal(t, testCase.ExpectedResult, result, "Statistics is not correct")
-
+				// Compare the result with expected result
+				assert.Equal(t, testCase.ExpectedResult, result, "Statistics is not correct")
+			})
+		})
 	}
 
 }
